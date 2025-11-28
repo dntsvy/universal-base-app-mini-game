@@ -1,0 +1,21 @@
+{
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
+  "baseBuilder": {
+    "ownerAddress": "0x43Edb9F120D208B8a6B13eCEE4b23eA60DB2Ff48",
+    "ownerENS": "dntsvy.base.eth"
+  },
+  "miniapp": {
+    "version": "1",
+    "name": "Universal Base App – Idle Simulation",
+    "homeUrl": "https://YOUR-VERCEL-URL.vercel.app",
+    "iconUrl": "https://YOUR-VERCEL-URL.vercel.app/icon-1024.png",
+    "splashImageUrl": "https://YOUR-VERCEL-URL.vercel.app/splash.png",
+    "splashBackgroundColor": "#0052FF",
+    "primaryCategory": "games",
+    "tags": ["idle", "simulation", "base", "miniapp"]
+  }
+}

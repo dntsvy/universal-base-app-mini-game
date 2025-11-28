@@ -1,0 +1,477 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top, #e0f2fe 0, #f8fafc 40%, #e2f3ff 100%);
+  color: #0f172a;
+  min-height: 100vh;
+}
+
+/* layout */
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.game-card {
+  width: 100%;
+  max-width: 960px;
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid #dbeafe;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Header & avatar */
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.game-title {
+  font-family: "Courier New", monospace;
+  font-size: 26px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #0f172a;
+}
+
+.game-subtitle {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #0369ff;
+  margin-top: 6px;
+}
+
+.jesse-avatar {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  background: #eff6ff;
+  border-radius: 20px;
+  border: 1px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* simple pixel blocks */
+.jesse-hair {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background: #fde047;
+  top: 8px;
+}
+.jesse-face {
+  position: absolute;
+  width: 42px;
+  height: 50px;
+  background: #f97316;
+  top: 20px;
+}
+.jesse-cigar {
+  position: absolute;
+  width: 46px;
+  height: 10px;
+  background: #0f172a;
+  border-radius: 4px;
+  bottom: 26px;
+  right: 4px;
+}
+
+/* funding banner */
+
+.funding-banner {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.funding-stage,
+.funding-detail {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+  display: flex;
+  flex-direction: column;
+}
+
+.funding-label {
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.funding-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* stats */
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.stat-box {
+  background: #eff6ff;
+  border-radius: 18px;
+  border: 1px solid #bfdbfe;
+  padding: 12px 14px;
+}
+
+.stat-label {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  margin-top: 4px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* BASEPOSTING button */
+
+.boost-button {
+  margin-top: 6px;
+  padding: 14px 16px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(90deg, #0052ff, #22d3ee);
+  color: #f9fafb;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.35);
+}
+.boost-button:hover {
+  filter: brightness(1.05);
+}
+.boost-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.2);
+}
+/* action row */
+
+.action-row {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* secondary action button */
+
+.secondary-button {
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid #bfdbfe;
+  background: #ffffff;
+  color: #0369ff;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+}
+.secondary-button:hover {
+  background: #eff6ff;
+}
+.secondary-button:active {
+  transform: translateY(1px);
+}
+
+
+/* BASE APP section */
+
+.shop-section {
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-title {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #0369ff;
+  margin-bottom: 4px;
+}
+
+.shop-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+.shop-item-ok:hover {
+  background: #eff6ff;
+  box-shadow: 0 10px 25px rgba(148, 163, 184, 0.25);
+}
+.shop-item-ok:active {
+  transform: translateY(1px);
+}
+.shop-item-no {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.shop-item-locked {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.shop-item-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.shop-item-name {
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  color: #0f172a;
+}
+
+.shop-item-desc {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.shop-item-cost {
+  font-size: 11px;
+  color: #0369ff;
+}
+
+/* console */
+
+.console-wrapper {
+  margin-top: 10px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #0f172a;
+}
+
+.console-header {
+  background: #020617;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.console-title {
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+}
+
+.console-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+.dot-red {
+  background: #f97373;
+}
+.dot-yellow {
+  background: #facc15;
+}
+.dot-green {
+  background: #4ade80;
+}
+
+.console-body {
+  background: #020617;
+  max-height: 220px;
+  padding: 8px 10px;
+  overflow-y: auto;
+}
+
+.console-line {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.25;
+  white-space: pre-wrap;
+  color: #e5e7eb;
+}
+
+/* competitor row */
+
+.competitor-row {
+  margin-top: 6px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.competitor-title {
+  font-weight: 600;
+}
+
+.competitor-value {
+  font-family: "Courier New", monospace;
+}
+
+/* danger (IPO) button */
+
+.danger-button {
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid #fecaca;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+}
+.danger-button:hover {
+  background: #fecaca;
+}
+.danger-button:active {
+  transform: translateY(1px);
+}
+.danger-button-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* universe map */
+
+.sector-map {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sector-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sector-title {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #0369ff;
+}
+
+.sector-subtitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.sector-grid {
+  margin-top: 6px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+}
+
+.sector-card {
+  padding: 8px 10px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sector-name {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sector-desc {
+  color: #64748b;
+}
+
+.sector-req {
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+/* sector status colors */
+
+.sector-completed {
+  border-color: #bbf7d0;
+  background: #ecfdf3;
+}
+
+.sector-active {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.sector-locked {
+  opacity: 0.5;
+}
+
