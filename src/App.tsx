@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { sdk } from "@farcaster/miniapp-sdk";
+
 
 // ---- Types ----
 
@@ -217,6 +219,10 @@ const ConsoleLog: React.FC<ConsoleLogProps> = ({ logs }) => {
 const SAVE_KEY = "universal_base_app_save_v2";
 
 const App: React.FC = () => {
+  const [fcUsername, setFcUsername] = useState<string | null>(null);
+  const [fcAvatar, setFcAvatar] = useState<string | null>(null);
+
+
   const [users, setUsers] = useState(0);
   const [fund, setFund] = useState(0); // ทุนบริษัท
   const [units, setUnits] = useState<AppUnit[]>(INITIAL_UNITS);
@@ -248,6 +254,39 @@ const App: React.FC = () => {
       return next;
     });
   };
+
+  // 🔵 แจ้ง Base/Farcaster ว่า UI พร้อมแล้ว
+  useEffect(() => {
+  const initMiniApp = async () => {
+    try {
+      const isMini = await sdk.isInMiniApp();
+
+      if (isMini) {
+        // แจ้ง Base ว่า UI พร้อมแล้ว (ซ่อน splash)
+        await sdk.actions.ready();
+
+        // ดึงบริบทของผู้เล่น
+        const context = await sdk.context;
+
+        // หากเปิดใน Base / Farcaster
+        if (context?.user?.username) {
+          setFcUsername(context.user.username);
+        }
+
+        if (context?.user?.pfpUrl) {
+          setFcAvatar(context.user.pfpUrl);
+        }
+
+
+      }
+    } catch (err) {
+      console.warn("MiniApp SDK not available, running as normal web app.", err);
+    }
+  };
+
+  initMiniApp();
+}, []);
+
 
   // โหลดเกมครั้งแรกจาก localStorage
   useEffect(() => {
@@ -340,6 +379,38 @@ const App: React.FC = () => {
       );
     }
   }, [fund, stageIndex]);
+
+    const handleLogin = async () => {
+    try {
+      // ใช้ any ป้องกัน TS error ถ้า type ยังไม่มี method นี้
+      const actions: any = sdk.actions as any;
+      const auth: any = await actions?.quickAuth?.();
+
+      if (auth?.username) {
+        setFcUsername(auth.username);
+        pushLog("SYSTEM", `Logged in as @${auth.username}`);
+      }
+
+      if (auth?.pfpUrl) {
+        setFcAvatar(auth.pfpUrl);
+      }
+    } catch (err) {
+      console.error("Login failed", err);
+      pushLog("WARN", "Login failed.");
+    }
+  };
+
+  const handleFollowCreator = async () => {
+    try {
+      const actions: any = sdk.actions as any;
+      await actions?.followUser?.({ username: "dntsvy" });
+      pushLog("SYSTEM", "You are now following @dntsvy");
+    } catch (err) {
+      console.error("Failed to follow @dntsvy", err);
+      pushLog("WARN", "Failed to follow @dntsvy");
+    }
+  };
+
 
   const handleBasepost = () => {
     const gainedUsers = 8 * growthBonus;
@@ -481,12 +552,35 @@ const App: React.FC = () => {
             <div className="game-subtitle">
               BUILT ON BASE · POWERED BY BUILDERS
             </div>
+
+            {fcUsername && (
+              <div className="player-username">
+                Logged in as @{fcUsername}
+              </div>
+            )}
+
+            {fcUsername && (
+              <button
+                onClick={handleFollowCreator}
+                className="secondary-button"
+                style={{ marginTop: "6px" }}
+              >
+                Follow @dntsvy
+              </button>
+            )}
+
+
           </div>
-          <div className="jesse-avatar">
-            <div className="jesse-hair" />
-            <div className="jesse-face" />
-            <div className="jesse-cigar" />
-          </div>
+          {fcAvatar ? (
+            <img
+              src={fcAvatar}
+              alt="pfp"
+              className="player-avatar"
+            />
+          ) : (
+            <div className="player-avatar-placeholder" />
+          )}
+
         </div>
 
         {/* Funding summary + prestige */}
@@ -554,6 +648,16 @@ const App: React.FC = () => {
           >
             IPO & RESET
           </button>
+
+          {!fcUsername && (
+            <button
+              className="secondary-button"
+              onClick={handleLogin}
+            >
+              Login with Base
+            </button>
+          )}
+
         </div>
 
         {/* Base App section */}

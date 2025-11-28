@@ -475,3 +475,27 @@ body {
   opacity: 0.5;
 }
 
+.player-username {
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0369ff;
+  font-family: "Courier New", monospace;
+}
+
+/* Avatar from Farcaster user */
+.player-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #0369ff;
+  object-fit: cover;
+}
+
+.player-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  background: #cbd5e1;
+  border-radius: 50%;
+}
+
