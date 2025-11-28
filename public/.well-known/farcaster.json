@@ -10,7 +10,7 @@
   },
   "miniapp": {
     "version": "1",
-    "name": "Universal Base App – Idle Simulation",
+    "name": "Universal Base App",
     "homeUrl": "https://universal-base-app-mini-game.vercel.app/",
     "iconUrl": "https://universal-base-app-mini-game.vercel.app/iconpng",
     "splashImageUrl": "https://universal-base-app-mini-game.vercel.app/splash.png",
