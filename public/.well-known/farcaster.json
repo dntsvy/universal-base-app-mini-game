@@ -12,7 +12,7 @@
     "version": "1",
     "name": "Universal Base App",
     "homeUrl": "https://universal-base-app-mini-game.vercel.app/",
-    "iconUrl": "https://universal-base-app-mini-game.vercel.app/iconpng",
+    "iconUrl": "https://universal-base-app-mini-game.vercel.app/icon.png",
     "splashImageUrl": "https://universal-base-app-mini-game.vercel.app/splash.png",
     "splashBackgroundColor": "#0052FF",
     "primaryCategory": "games",
